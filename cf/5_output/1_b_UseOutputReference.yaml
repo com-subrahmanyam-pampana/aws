@@ -1,0 +1,5 @@
+Resources:
+  MyElasticIP:
+    Type: AWS::EC2::EIP
+    Properties:
+      InstanceId: !ImportValue MyEC2Instance1  

@@ -1,0 +1,16 @@
+# This is a test stack
+# Resources:
+#   MyS3PrivateBucket:
+#     Type: AWS::S3::Bucket
+#     Properties:
+#       AccessControl: PublicRead
+#       BucketName: "test-bucket-cf-from-another-stack"
+
+#You can use alread existing stack
+#Copy the S# bucket creation stack to a yaml file 
+#Uploaad that yaml template to   s3 and  get the public read URL
+Resources:
+ MyTestStack:
+  Type: AWS::CloudFormation::Stack
+  Properties: 
+    TemplateURL: https://test-bucket-cf-subbu-1.s3.ap-south-1.amazonaws.com/2_S3BucketWithName.yaml

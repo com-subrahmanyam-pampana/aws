@@ -1,0 +1,13 @@
+Resources:
+  MyS3PrivateBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      AccessControl: Private
+      BucketName: "test-bucket-cf-1"
+  MyS3PrivateBucket2:
+    Type: AWS::S3::Bucket
+    Properties:
+      AccessControl: Private
+      BucketName: "test-bucket-cf-2"    
+
+   

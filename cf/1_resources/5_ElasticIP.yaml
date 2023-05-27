@@ -1,0 +1,11 @@
+Resources:
+  MyEC2Instance:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: ami-0742b4e673072066f
+      InstanceType: t2.micro
+      AvailabilityZone: us-east-1a
+  MyElasticIP:
+    Type: AWS::EC2::EIP
+    Properties:
+      InstanceId: !Ref MyEC2Instance    

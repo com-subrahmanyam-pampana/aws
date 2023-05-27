@@ -1,0 +1,16 @@
+
+
+Parameters:
+  BucketName:
+    Description: Please enter the bucket name you want
+    Type: String
+ 
+# Create a S3 bucket.This bucket is Private
+Resources:
+  MyS3Bucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      AccessControl: Private
+      BucketName: !Ref BucketName
+
+     

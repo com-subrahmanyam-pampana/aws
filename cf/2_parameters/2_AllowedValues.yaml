@@ -1,0 +1,17 @@
+
+
+Parameters:
+  AccessControl:
+    Description: What is the  Acees Controller 
+    Type: String
+    AllowedValues: [Private,PublicRead]
+    ConstraintDescription: |
+     AccessControl must  be Private  or PublicRead.
+     PublicRead:Outside people can read your file
+Resources:
+  MyS3Bucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      AccessControl: !Ref AccessControl
+      BucketName: test-bucket-from-the-cf
+      

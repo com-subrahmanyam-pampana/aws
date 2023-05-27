@@ -1,0 +1,52 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  sam-app-hello
+
+  Sample SAM Template for sam-app-hello
+
+Parameters:
+ Env:
+  Type: String
+  Default: stg
+
+Globals:
+  Function:
+    Timeout: 3
+    Tracing: Active
+  Api:
+    TracingEnabled: true
+
+Resources:
+  Api:
+   Type: AWS::Serverless::Api
+   Properties:
+    StageName: qa
+    Name: First-API
+   
+
+  HelloSubbu:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/
+      Handler: main_engine.lambdaHandler
+      Runtime: nodejs18.x
+      Architectures:
+      - x86_64
+      Environment:
+        Variables:
+         v1: !Ref Env
+        
+      Events:
+        HelloWorld:
+          Type: Api 
+          Properties:
+            Path: /hellosubbu
+            Method: get
+            RestApiId: !Ref Api
+            
+Outputs:
+  HelloSubbu:
+    Value: !GetAtt HelloSubbu.Arn
+    Export:
+       Name: 'TestFuncOutput'

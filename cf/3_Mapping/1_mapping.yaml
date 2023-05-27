@@ -1,0 +1,27 @@
+
+
+Parameters:
+  Environment:
+    Description: What is the  Environment 
+    Type: String
+    AllowedValues: [prod,stage,uat]
+    ConstraintDescription: |
+     Environment must  be prod  or stage
+     or uat.Enter only these values
+
+Mappings:
+  Environments:
+    prod:
+      BucketName: my-bucket-to-save-images-prod
+    stage:
+      BucketName: my-bucket-to-save-images-stg
+    uat:
+      BucketName: my-bucket-to-save-images-uat
+
+Resources:
+  MyS3Bucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      AccessControl: Private
+      BucketName: !FindInMap [Environments, !Ref Environment, BucketName]
+      

@@ -1,0 +1,27 @@
+
+
+Parameters:
+  Environment:
+    Description: What is the  Environment 
+    Type: String
+    AllowedValues: [prod,stage,uat]
+    ConstraintDescription: |
+     Environment must  be prod  or stage
+     or uat.Enter only these values
+
+Conditions:
+  ProdEnv: !Equals [ !Ref Environment, prod ]
+
+Resources:
+  MyS3Bucket1:
+    Type: AWS::S3::Bucket
+    Properties:
+      AccessControl: Private
+      BucketName: mybucket-images-storage-bucket
+  MyS3Bucket2:
+    Condition: ProdEnv
+    Type: AWS::S3::Bucket
+    Properties:
+      AccessControl: Private
+      BucketName: mybucket-doc-storage-bucket     
+      
